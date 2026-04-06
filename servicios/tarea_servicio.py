@@ -1,23 +1,15 @@
-from modelos.tarea import Tarea
-
 class TareaServicio:
     def __init__(self):
         self.tareas = []
-        self.contador_id = 1
 
-    def agregar_tarea(self, descripcion):
-        tarea = Tarea(self.contador_id, descripcion)
+    def agregar_tarea(self, tarea):
         self.tareas.append(tarea)
-        self.contador_id += 1
-        return tarea
 
-    def obtener_tareas(self):
+    def listar_tareas(self):
         return self.tareas
 
-    def completar_tarea(self, id):
-        for tarea in self.tareas:
-            if tarea.id == id and not tarea.completado:
-                tarea.marcar_completado()
+    def completar_tarea(self, index):
+        self.tareas[index].completada = True
 
-    def eliminar_tarea(self, id):
-        self.tareas = [t for t in self.tareas if t.id != id]
+    def eliminar_tarea(self, index):
+        self.tareas.pop(index)
